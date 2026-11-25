@@ -1,0 +1,19 @@
+<!ELEMENT products (product+)>
+<!ELEMENT product (productID, productName, brand, category, price, description, dimensions?, stock, availability)>
+<!ELEMENT productID (#PCDATA)>
+<!ELEMENT productName (#PCDATA)>
+<!ELEMENT brand (#PCDATA)>
+<!ELEMENT category (#PCDATA)>
+<!ELEMENT price (#PCDATA)>
+<!ELEMENT description (#PCDATA)>
+<!ELEMENT stock (#PCDATA)>
+<!ELEMENT availability (#PCDATA)>
+<!ELEMENT dimensions (width, height, depth)>
+<!ELEMENT width (#PCDATA)>
+<!ELEMENT height (#PCDATA)>
+<!ELEMENT depth (#PCDATA)>
+<!ATTLIST price currency CDATA #REQUIRED>
+<!ATTLIST stock unit CDATA #REQUIRED>
+<!ATTLIST width unit (cm) #REQUIRED>
+<!ATTLIST height unit (cm) #REQUIRED>
+<!ATTLIST depth unit (cm) #REQUIRED>

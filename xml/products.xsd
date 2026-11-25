@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <!-- Product ID: must follow P101 format -->
+    <xs:simpleType name="ProductIDType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="P[0-9]{3}"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Positive price -->
+    <xs:simpleType name="PositivePriceType">
+        <xs:restriction base="xs:decimal">
+            <xs:minExclusive value="0"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Non-negative stock -->
+    <xs:simpleType name="StockType">
+        <xs:restriction base="xs:integer">
+            <xs:minInclusive value="0"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <!-- Positive dimension -->
+    <xs:simpleType name="PositiveDimensionType">
+        <xs:restriction base="xs:decimal">
+            <xs:minExclusive value="0"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="products">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="product" minOccurs="1" maxOccurs="unbounded">
+                    <xs:complexType>
+                        <xs:sequence>
+
+                            <xs:element name="productID" type="ProductIDType"/>
+                            <xs:element name="productName" type="xs:string"/>
+                            <xs:element name="brand" type="xs:string"/>
+                            <xs:element name="category" type="xs:string"/>
+
+                            <xs:element name="price">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="PositivePriceType">
+                                            <xs:attribute name="currency" use="required">
+                                                <xs:simpleType>
+                                                    <xs:restriction base="xs:string">
+                                                        <xs:enumeration value="INR"/>
+                                                        <xs:enumeration value="USD"/>
+                                                    </xs:restriction>
+                                                </xs:simpleType>
+                                            </xs:attribute>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+
+                            <xs:element name="description" type="xs:string"/>
+
+                            <xs:element name="dimensions" minOccurs="0">
+                                <xs:complexType>
+                                    <xs:sequence>
+
+                                        <xs:element name="width">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="PositiveDimensionType">
+                                                        <xs:attribute name="unit" use="required">
+                                                            <xs:simpleType>
+                                                                <xs:restriction base="xs:string">
+                                                                    <xs:enumeration value="cm"/>
+                                                                </xs:restriction>
+                                                            </xs:simpleType>
+                                                        </xs:attribute>
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+
+                                        <xs:element name="height">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="PositiveDimensionType">
+                                                        <xs:attribute name="unit" use="required">
+                                                            <xs:simpleType>
+                                                                <xs:restriction base="xs:string">
+                                                                    <xs:enumeration value="cm"/>
+                                                                </xs:restriction>
+                                                            </xs:simpleType>
+                                                        </xs:attribute>
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+
+                                        <xs:element name="depth">
+                                            <xs:complexType>
+                                                <xs:simpleContent>
+                                                    <xs:extension base="PositiveDimensionType">
+                                                        <xs:attribute name="unit" use="required">
+                                                            <xs:simpleType>
+                                                                <xs:restriction base="xs:string">
+                                                                    <xs:enumeration value="cm"/>
+                                                                </xs:restriction>
+                                                            </xs:simpleType>
+                                                        </xs:attribute>
+                                                    </xs:extension>
+                                                </xs:simpleContent>
+                                            </xs:complexType>
+                                        </xs:element>
+
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+
+                            <xs:element name="stock">
+                                <xs:complexType>
+                                    <xs:simpleContent>
+                                        <xs:extension base="StockType">
+                                            <xs:attribute name="unit" use="required">
+                                                <xs:simpleType>
+                                                    <xs:restriction base="xs:string">
+                                                        <xs:enumeration value="units"/>
+                                                    </xs:restriction>
+                                                </xs:simpleType>
+                                            </xs:attribute>
+                                        </xs:extension>
+                                    </xs:simpleContent>
+                                </xs:complexType>
+                            </xs:element>
+
+                            <xs:element name="availability">
+                                <xs:simpleType>
+                                    <xs:restriction base="xs:string">
+                                        <xs:enumeration value="In Stock"/>
+                                        <xs:enumeration value="Out of Stock"/>
+                                        <xs:enumeration value="Pre-order"/>
+                                    </xs:restriction>
+                                </xs:simpleType>
+                            </xs:element>
+
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+
+        <xs:key name="productIDKey">
+            <xs:selector xpath="product"/>
+            <xs:field xpath="productID"/>
+        </xs:key>
+
+    </xs:element>
+
+</xs:schema>

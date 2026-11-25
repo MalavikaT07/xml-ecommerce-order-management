@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE products SYSTEM "../dtd/products.dtd">
+<products
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="products.xsd">
+<!--keyboard product details-->
+<product>
+<productID>P101</productID>
+<productName>Keyboard</productName>
+<brand>Logitech</brand>
+<category>Electronics</category>
+<price currency="INR">1499</price>
+<description>Wireless keyboard with USB receiver</description>
+<dimensions>
+<width unit="cm">44</width>
+<height unit="cm">3</height>
+<depth unit="cm">13</depth>
+</dimensions>
+<stock unit="units">25</stock>
+<availability>In Stock</availability>
+</product>
+
+<product>
+<productID>P102</productID>
+<productName>Mouse</productName>
+<brand>HP</brand>
+<category>Electronics</category>
+<price currency="INR">599</price>
+<description>Wireless optical mouse with USB receiver</description>
+<stock unit="units">0</stock>
+<availability>Out of Stock</availability>
+</product>
+
+<product>
+<productID>P103</productID>
+<productName>Monitor</productName>
+<brand>Dell</brand>
+<category>Electronics</category>
+<price currency="INR">8999</price>
+<description>Full HD LED monitor</description>
+<dimensions>
+<width unit="cm">61</width>
+<height unit="cm">36</height>
+<depth unit="cm">5</depth>
+</dimensions>
+<stock unit="units">12</stock>
+<availability>In Stock</availability>
+</product>
+
+
+</products>
